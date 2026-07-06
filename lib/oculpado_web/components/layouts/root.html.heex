@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <script
+      defer
+      data-domain="oculpado.fly.dev"
+      src="https://devsnorte-plausible.fly.dev/js/script.js"
+    >
+    </script>
+    <.live_title default="O Culpado" suffix=" · O Culpado">
+      {assigns[:page_title]}
+    </.live_title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="O Culpado" />
+    <meta :if={assigns[:og_title]} property="og:title" content={@og_title} />
+    <meta :if={assigns[:og_description]} property="og:description" content={@og_description} />
+    <meta :if={assigns[:og_image]} property="og:image" content={@og_image} />
+    <meta :if={assigns[:page_url]} property="og:url" content={@page_url} />
+    <meta name="twitter:card" content="summary" />
+    <meta :if={assigns[:og_title]} name="twitter:title" content={@og_title} />
+    <meta :if={assigns[:og_description]} name="twitter:description" content={@og_description} />
+    <meta :if={assigns[:og_image]} name="twitter:image" content={@og_image} />
+    <link phx-track-static rel="stylesheet" href={~p"/assets/css/app.css"} />
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/js/app.js"}>
+    </script>
+    <script>
+      (() => {
+        const setTheme = (theme) => {
+          if (theme === "system") {
+            localStorage.removeItem("phx:theme");
+            document.documentElement.removeAttribute("data-theme");
+          } else {
+            localStorage.setItem("phx:theme", theme);
+            document.documentElement.setAttribute("data-theme", theme);
+          }
+        };
+        if (!document.documentElement.hasAttribute("data-theme")) {
+          setTheme(localStorage.getItem("phx:theme") || "system");
+        }
+        window.addEventListener("storage", (e) => e.key === "phx:theme" && setTheme(e.newValue || "system"));
+        
+        window.addEventListener("phx:set-theme", (e) => setTheme(e.target.dataset.phxTheme));
+      })();
+    </script>
+  </head>
+  <body>
+    {@inner_content}
+  </body>
+</html>

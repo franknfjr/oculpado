@@ -1,0 +1,27 @@
+app = "oculpado"
+primary_region = "gru"
+
+[build]
+
+[env]
+  PHX_HOST = "oculpado.fly.dev"
+  PORT = "8080"
+  DATABASE_PATH = "/data/oculpado.db"
+
+# Volume persistente com o SQLite (sobrevive a deploys/restarts)
+[mounts]
+  source = "oculpado_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  # SQLite é single-writer: manter 1 máquina sempre de pé e sem auto-stop
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
