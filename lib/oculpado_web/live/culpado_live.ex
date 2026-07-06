@@ -209,11 +209,13 @@ defmodule OculpadoWeb.CulpadoLive do
                 <div class="flex items-center gap-2">
                   <span class="font-bold truncate">{p.name}</span>
                   <span :if={p.captain} class="pill">C</span>
+                  <span :if={p.coach} class="pill" style="color: var(--br-yellow)">TÉCNICO</span>
                   <span class="vote-check text-lg" style="color: var(--br-yellow)">✓</span>
                 </div>
                 <div class="flex items-center gap-2 text-xs text-white/60 mt-0.5">
-                  <span>#{p.number}</span>
-                  <span>· {p.position}</span>
+                  <span :if={p.number}>#{p.number}</span>
+                  <span :if={p.number}>·</span>
+                  <span>{p.position}</span>
                   <span :if={p.goals && p.goals > 0} class="pill">⚽ {p.goals}</span>
                 </div>
 

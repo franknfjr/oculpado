@@ -6,7 +6,11 @@
     "score": "0-3",
     "loser": "Canada",
     "startTimestamp": "2026-07-04T17:00:00+00:00",
-    "source": "sofascore.com/api/v1/event/12813009/lineups"
+    "source": "sofascore.com/api/v1/event/12813009/lineups",
+    "loser_coach": {
+      "id": 784568,
+      "name": "Jesse Marsch"
+    }
   },
   "loser_team": {
     "id": 4752,

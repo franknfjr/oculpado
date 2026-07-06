@@ -32,13 +32,17 @@ defmodule Oculpado.Assets do
   """
   def fetch_all(opts \\ []) do
     force = Keyword.get(opts, :force, false)
-    %{teams: teams, players: players} = collect_refs()
+    %{teams: teams, players: players, managers: managers} = collect_refs()
 
-    Logger.info("[assets] #{MapSet.size(teams)} times e #{MapSet.size(players)} jogadores")
+    Logger.info(
+      "[assets] #{MapSet.size(teams)} times, #{MapSet.size(players)} jogadores, " <>
+        "#{MapSet.size(managers)} técnicos"
+    )
 
     results =
       Enum.map(teams, &{:team, &1, fetch(:team, &1, force)}) ++
-        Enum.map(players, &{:player, &1, fetch(:player, &1, force)})
+        Enum.map(players, &{:player, &1, fetch(:player, &1, force)}) ++
+        Enum.map(managers, &{:manager, &1, fetch(:manager, &1, force)})
 
     summarize(results)
   end
@@ -51,7 +55,7 @@ defmodule Oculpado.Assets do
 
   Usado pelo `Oculpado.Data` para trocar a URL do SofaScore pelo arquivo local.
   """
-  def local_path(kind, id) when kind in [:team, :player] and not is_nil(id) do
+  def local_path(kind, id) when kind in [:team, :player, :manager] and not is_nil(id) do
     dir = Path.join(images_dir(), plural(kind))
 
     Enum.find_value([".webp", ".png", ".jpg"], fn ext ->
@@ -69,12 +73,23 @@ defmodule Oculpado.Assets do
     |> Path.join("*.json")
     |> Path.wildcard()
     |> Enum.map(&(&1 |> File.read!() |> Jason.decode!()))
-    |> Enum.reduce(%{teams: MapSet.new(), players: MapSet.new()}, fn json, acc ->
-      %{
-        teams: MapSet.union(acc.teams, team_ids(json)),
-        players: MapSet.union(acc.players, player_ids(json))
-      }
-    end)
+    |> Enum.reduce(
+      %{teams: MapSet.new(), players: MapSet.new(), managers: MapSet.new()},
+      fn json, acc ->
+        %{
+          teams: MapSet.union(acc.teams, team_ids(json)),
+          players: MapSet.union(acc.players, player_ids(json)),
+          managers: MapSet.union(acc.managers, manager_ids(json))
+        }
+      end
+    )
+  end
+
+  defp manager_ids(json) do
+    case get_in(json, ["match", "loser_coach", "id"]) do
+      id when is_integer(id) -> MapSet.new([id])
+      _ -> MapSet.new()
+    end
   end
 
   defp team_ids(json) do
@@ -143,6 +158,7 @@ defmodule Oculpado.Assets do
 
   defp plural(:team), do: "teams"
   defp plural(:player), do: "players"
+  defp plural(:manager), do: "managers"
 
   defp summarize(results) do
     ok = Enum.count(results, fn {_, _, r} -> r == :ok end)

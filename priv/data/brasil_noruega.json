@@ -6,7 +6,11 @@
     "away": "Norway",
     "score": "1-2",
     "startTimestamp": "2026-07-05T20:00:00+00:00",
-    "source": "sofascore.com/api/v1/event/12813006/lineups"
+    "source": "sofascore.com/api/v1/event/12813006/lineups",
+    "loser_coach": {
+      "id": 52965,
+      "name": "Carlo Ancelotti"
+    }
   },
   "home": {
     "team": {

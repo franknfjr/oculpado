@@ -6,7 +6,11 @@
     "score": "0-1",
     "loser": "Paraguay",
     "startTimestamp": "2026-07-04T21:00:00+00:00",
-    "source": "sofascore.com/api/v1/event/12813010/lineups"
+    "source": "sofascore.com/api/v1/event/12813010/lineups",
+    "loser_coach": {
+      "id": 53366,
+      "name": "Gustavo Alfaro"
+    }
   },
   "loser_team": {
     "id": 4789,
