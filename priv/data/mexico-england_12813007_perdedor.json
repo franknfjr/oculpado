@@ -10,7 +10,9 @@
       "name": "Javier Aguirre"
     },
     "startTimestamp": "2026-07-06T01:00:00+00:00",
-    "source": "sofascore.com/api/v1/event/12813007/lineups"
+    "source": "sofascore.com/api/v1/event/12813007/lineups",
+    "home_id": 4781,
+    "away_id": 4713
   },
   "loser_team": {
     "id": 4781,

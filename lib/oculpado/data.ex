@@ -86,9 +86,10 @@ defmodule Oculpado.Data do
 
     players = loser_players(json, loser, home)
     {home_id, away_id} = team_ids(json, loser, home)
-    # completa ids faltantes (ex.: vencedor no formato "só perdedor") pelo nome do time
-    home_id = home_id || @team_ids[home]
-    away_id = away_id || @team_ids[away]
+    # completa ids faltantes (ex.: vencedor no formato "só perdedor"): primeiro pelos
+    # ids gravados no próprio JSON, depois pelo mapa por nome do time.
+    home_id = home_id || match["home_id"] || @team_ids[home]
+    away_id = away_id || match["away_id"] || @team_ids[away]
     loser_id = if loser == home, do: home_id, else: away_id
 
     %{

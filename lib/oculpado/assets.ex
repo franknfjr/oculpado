@@ -100,7 +100,10 @@ defmodule Oculpado.Assets do
       get_in(json, ["home", "team", "id"]),
       get_in(json, ["away", "team", "id"]),
       get_in(json, ["loser_team", "id"]),
-      # nos JSONs "só perdedor" o vencedor só aparece pelo nome — resolve pelo mapa
+      # nos JSONs "só perdedor" o vencedor pode vir por id gravado no JSON…
+      match["home_id"],
+      match["away_id"],
+      # …ou, na falta dele, pelo nome do time no mapa
       by_name[match["home"]],
       by_name[match["away"]]
     ]
