@@ -48,17 +48,32 @@ defmodule OculpadoWeb.MatchesLive do
               <div class="culpa-card rise px-4 py-4 sm:px-5 sm:py-5">
                 <div class="flex items-center justify-between gap-4">
                   <div class="min-w-0 flex items-center gap-3">
-                    <img :if={m.loser_logo} src={m.loser_logo} alt={m.loser} class="w-11 h-11 object-contain shrink-0" />
+                    <img
+                      :if={m.loser_logo}
+                      src={m.loser_logo}
+                      alt={m.loser}
+                      class="w-11 h-11 object-contain shrink-0"
+                    />
                     <div class="min-w-0">
                       <div class="text-xs uppercase tracking-wide text-white/50 mb-1">
                         Culpado {article(m.loser)} <span class="text-white/80">{m.loser}</span>
                       </div>
                       <div class="text-lg sm:text-2xl font-black truncate flex items-center gap-2">
-                        <img :if={m.home_logo} src={m.home_logo} alt={m.home} class="w-5 h-5 object-contain" />
+                        <img
+                          :if={m.home_logo}
+                          src={m.home_logo}
+                          alt={m.home}
+                          class="w-5 h-5 object-contain"
+                        />
                         {m.home}
                         <span style="color: var(--br-yellow)">{m.score}</span>
                         {m.away}
-                        <img :if={m.away_logo} src={m.away_logo} alt={m.away} class="w-5 h-5 object-contain" />
+                        <img
+                          :if={m.away_logo}
+                          src={m.away_logo}
+                          alt={m.away}
+                          class="w-5 h-5 object-contain"
+                        />
                       </div>
                     </div>
                   </div>
@@ -76,6 +91,8 @@ defmodule OculpadoWeb.MatchesLive do
             </.link>
           </li>
         </ul>
+
+        <.github_footer />
       </div>
     </div>
     """

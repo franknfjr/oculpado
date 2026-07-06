@@ -239,6 +239,8 @@ defmodule OculpadoWeb.CulpadoLive do
             </div>
           </li>
         </ul>
+
+        <.github_footer />
       </div>
     </div>
     """
