@@ -210,6 +210,7 @@ defmodule OculpadoWeb.CulpadoLive do
                   <span class="font-bold truncate">{p.name}</span>
                   <span :if={p.captain} class="pill">C</span>
                   <span :if={p.coach} class="pill" style="color: var(--br-yellow)">TÉCNICO</span>
+                  <span :if={p.referee} class="pill" style="color: var(--br-yellow)">ÁRBITRO</span>
                   <span class="vote-check text-lg" style="color: var(--br-yellow)">✓</span>
                 </div>
                 <div class="flex items-center gap-2 text-xs text-white/60 mt-0.5">

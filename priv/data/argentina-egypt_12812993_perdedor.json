@@ -12,7 +12,11 @@
       "name": "Hossam Hassan"
     },
     "startTimestamp": "2026-07-07T16:00:00+00:00",
-    "source": "sofascore.com/api/v1/event/12812993/lineups"
+    "source": "sofascore.com/api/v1/event/12812993/lineups",
+    "loser_referee": {
+      "id": 785114,
+      "name": "François Letexier"
+    }
   },
   "loser_team": {
     "id": 4758,

@@ -125,6 +125,7 @@ defmodule Oculpado.Data do
         |> Enum.map(&normalize/1)
         |> sort_candidates()
         |> maybe_add_coach(match["loser_coach"])
+        |> maybe_add_referee(match["loser_referee"])
     }
   end
 
@@ -174,6 +175,7 @@ defmodule Oculpado.Data do
       rating: nil,
       goals: nil,
       coach: true,
+      referee: false,
       photo:
         Oculpado.Assets.local_path(:manager, id) ||
           "https://api.sofascore.com/api/v1/manager/#{id}/image"
@@ -183,6 +185,32 @@ defmodule Oculpado.Data do
   end
 
   defp maybe_add_coach(candidates, _), do: candidates
+
+  # O árbitro também pode ser o culpado — entra como candidato no fim da lista.
+  defp maybe_add_referee(candidates, %{"id" => id, "name" => name}) when is_integer(id) do
+    referee = %{
+      id: id,
+      name: name,
+      short_name: name,
+      number: nil,
+      position: "Árbitro",
+      position_code: "R",
+      starter: false,
+      minutes: 0,
+      captain: false,
+      rating: nil,
+      goals: nil,
+      coach: false,
+      referee: true,
+      photo:
+        Oculpado.Assets.local_path(:referee, id) ||
+          "https://api.sofascore.com/api/v1/referee/#{id}/image"
+    }
+
+    candidates ++ [referee]
+  end
+
+  defp maybe_add_referee(candidates, _), do: candidates
 
   # Ids dos times (home, away). No formato "perdedor" só temos o id do time que perdeu.
   defp team_ids(json, loser, home) do
@@ -259,6 +287,7 @@ defmodule Oculpado.Data do
       rating: p["rating"],
       goals: p["goals"],
       coach: false,
+      referee: false,
       photo: player_photo(p)
     }
   end
