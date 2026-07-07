@@ -19,6 +19,7 @@ defmodule OculpadoWeb.Router do
 
     live "/", MatchesLive, :index
     live "/match/:slug", CulpadoLive, :show
+    live "/prediction/:slug", PredictionLive, :show
   end
 
   # Other scopes may use custom stacks.

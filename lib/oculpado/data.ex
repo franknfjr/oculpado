@@ -76,7 +76,11 @@ defmodule Oculpado.Data do
 
   # ---- construção / normalização ----
 
-  defp build_match(json) do
+  defp build_match(%{"match" => %{"mode" => "prediction"}} = json), do: build_prediction(json)
+  defp build_match(json), do: build_culprit(json)
+
+  # Jogo já encerrado: vote no culpado (jogadores + técnico do time perdedor).
+  defp build_culprit(json) do
     match = json["match"]
     home = match["home"]
     away = match["away"]
@@ -94,6 +98,7 @@ defmodule Oculpado.Data do
 
     %{
       id: match["id"],
+      mode: :culprit,
       slug: build_slug(match, home, away),
       home: home,
       away: away,
@@ -110,6 +115,37 @@ defmodule Oculpado.Data do
         |> Enum.map(&normalize/1)
         |> sort_candidates()
         |> maybe_add_coach(match["loser_coach"])
+    }
+  end
+
+  # Jogo que ainda não aconteceu: palpite de quem vence (mandante / empate / visitante).
+  # As três opções reaproveitam o mesmo sistema de votos (id da opção = id do time; empate = 0).
+  defp build_prediction(json) do
+    match = json["match"]
+    home = match["home"]
+    away = match["away"]
+    home_id = match["home_id"] || @team_ids[home]
+    away_id = match["away_id"] || @team_ids[away]
+
+    options = [
+      %{id: home_id, kind: :home, label: home, logo: team_logo(home_id), votes: 0},
+      %{id: 0, kind: :draw, label: "Empate", logo: nil, votes: 0},
+      %{id: away_id, kind: :away, label: away, logo: team_logo(away_id), votes: 0}
+    ]
+
+    %{
+      id: match["id"],
+      mode: :prediction,
+      slug: build_slug(match, home, away),
+      home: home,
+      away: away,
+      score: nil,
+      loser: nil,
+      home_logo: team_logo(home_id),
+      away_logo: team_logo(away_id),
+      loser_logo: nil,
+      kickoff: match["startTimestamp"] || "",
+      candidates: options
     }
   end
 

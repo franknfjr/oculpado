@@ -1,0 +1,12 @@
+{
+  "match": {
+    "id": 12812993,
+    "mode": "prediction",
+    "home": "Argentina",
+    "away": "Egypt",
+    "home_id": 4819,
+    "away_id": 4758,
+    "startTimestamp": "2026-07-07T16:00:00+00:00",
+    "source": "sofascore.com/api/v1/event/12812993"
+  }
+}
