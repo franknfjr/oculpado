@@ -14,10 +14,11 @@ defmodule OculpadoWeb.CulpadoLive do
 
         art = article(match.loser)
         page_url = url(~p"/match/#{match.slug}")
+        placar = scoreline(match)
 
         share_text =
           "Quem foi o culpado pela eliminação #{art} #{match.loser}? " <>
-            "#{match.home} #{match.score} #{match.away}. Vote você também:"
+            "#{match.home} #{placar} #{match.away}. Vote você também:"
 
         socket =
           socket
@@ -29,7 +30,7 @@ defmodule OculpadoWeb.CulpadoLive do
           |> assign(:share_text, share_text)
           |> assign(
             :og_title,
-            "O Culpado #{art} #{match.loser} — #{match.home} #{match.score} #{match.away}"
+            "O Culpado #{art} #{match.loser} — #{match.home} #{placar} #{match.away}"
           )
           |> assign(
             :og_description,
@@ -157,6 +158,9 @@ defmodule OculpadoWeb.CulpadoLive do
               alt={@match.away}
               class="w-4 h-4 object-contain"
             />
+            <span :if={@match.decided_on_penalties} class="text-white/60">
+              · pên. {@match.penalties}
+            </span>
           </div>
 
           <img
@@ -252,6 +256,12 @@ defmodule OculpadoWeb.CulpadoLive do
   defp article(loser) do
     if String.ends_with?(loser, "a"), do: "da", else: "do"
   end
+
+  # Placar textual; inclui os pênaltis quando o jogo foi decidido neles.
+  defp scoreline(%{decided_on_penalties: true, score: score, penalties: pen}),
+    do: "#{score} (pên. #{pen})"
+
+  defp scoreline(%{score: score}), do: score
 
   # og:image precisa de URL absoluta. Escudos locais viram "/images/..."; aqui
   # prefixamos o host. URLs remotas (fallback) já são absolutas — passam direto.

@@ -115,6 +115,8 @@ defmodule Oculpado.Data do
       score: match["score"],
       home_goals: home_goals,
       away_goals: away_goals,
+      penalties: match["penalties"],
+      decided_on_penalties: match["decided_on_penalties"] || false,
       loser: loser,
       home_logo: team_logo(home_id),
       away_logo: team_logo(away_id),

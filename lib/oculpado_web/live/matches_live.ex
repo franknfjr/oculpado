@@ -132,6 +132,12 @@ defmodule OculpadoWeb.MatchesLive do
                             alt={m.away}
                             class="w-5 h-5 object-contain"
                           />
+                          <span
+                            :if={m.decided_on_penalties}
+                            class="text-xs font-normal text-white/50"
+                          >
+                            pên. {m.penalties}
+                          </span>
                         </div>
                       </div>
                     </div>
