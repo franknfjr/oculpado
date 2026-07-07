@@ -49,9 +49,13 @@ defmodule Oculpado.Votes do
   def tally(match_id) do
     base = Map.new(Oculpado.Data.candidate_ids(match_id), &{&1, 0})
 
+    # conta só os candidatos atuais: votos órfãos (ex.: opções de um palpite que virou
+    # jogo de culpado, mantendo o mesmo match_id) são ignorados sem tocar no banco.
     @table
     |> :ets.match_object({{match_id, :_}, :_})
-    |> Enum.reduce(base, fn {{_m, pid}, count}, acc -> Map.put(acc, pid, count) end)
+    |> Enum.reduce(base, fn {{_m, pid}, count}, acc ->
+      if Map.has_key?(base, pid), do: Map.put(acc, pid, count), else: acc
+    end)
   end
 
   @doc "Total de votos de uma partida."
