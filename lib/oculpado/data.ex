@@ -64,8 +64,18 @@ defmodule Oculpado.Data do
     end
   end
 
-  @doc "IDs dos candidatos de uma partida."
-  def candidate_ids(slug), do: candidates(slug) |> Enum.map(& &1.id)
+  @doc """
+  IDs dos candidatos de uma partida. Aceita o slug (string) ou o id do jogo (integer,
+  usado pelo `Oculpado.Votes`).
+  """
+  def candidate_ids(slug) when is_binary(slug), do: candidates(slug) |> Enum.map(& &1.id)
+
+  def candidate_ids(match_id) when is_integer(match_id) do
+    case Enum.find(matches(), &(&1.id == match_id)) do
+      nil -> []
+      m -> Enum.map(m.candidates, & &1.id)
+    end
+  end
 
   @doc "Mapa id => candidato de uma partida."
   def candidates_by_id(slug), do: Map.new(candidates(slug), &{&1.id, &1})
