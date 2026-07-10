@@ -1,0 +1,12 @@
+{
+  "match": {
+    "id": 12812994,
+    "mode": "prediction",
+    "home": "Spain",
+    "away": "Belgium",
+    "home_id": 4698,
+    "away_id": 4717,
+    "startTimestamp": "2026-07-10T19:00:00+00:00",
+    "source": "sofascore.com/api/v1/event/12812994"
+  }
+}
