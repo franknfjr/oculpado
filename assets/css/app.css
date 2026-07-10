@@ -214,6 +214,29 @@
   background: rgba(255, 255, 255, 0.08);
 }
 
+/* Contagem regressiva até a bola rolar */
+.countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--br-yellow);
+  background: color-mix(in srgb, var(--br-yellow) 12%, transparent);
+}
+.countdown:empty {
+  display: none;
+}
+.countdown.is-live {
+  color: #ff5a5a;
+  background: rgba(255, 90, 90, 0.14);
+  animation: pulse-live 1.4s ease-in-out infinite;
+}
+@keyframes pulse-live {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
 /* Botões de compartilhar */
 .share-btn {
   --sc: rgba(255, 223, 0, 0.9);

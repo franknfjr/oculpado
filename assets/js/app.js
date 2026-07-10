@@ -94,6 +94,42 @@ Hooks.VoterSync = {
   },
 }
 
+// Contagem regressiva até o horário do jogo (data-kickoff em ISO8601).
+// Roda no cliente (relógio do torcedor), sem round-trip ao servidor a cada segundo.
+Hooks.Countdown = {
+  mounted() {
+    this.target = new Date(this.el.dataset.kickoff).getTime()
+    this.tick()
+    this.timer = setInterval(() => this.tick(), 1000)
+  },
+  destroyed() {
+    clearInterval(this.timer)
+  },
+  tick() {
+    if (isNaN(this.target)) {
+      this.el.textContent = ""
+      return
+    }
+    const diff = this.target - Date.now()
+    if (diff <= 0) {
+      this.el.textContent = "🔴 bola rolando"
+      this.el.classList.add("is-live")
+      clearInterval(this.timer)
+      return
+    }
+    const pad = n => String(n).padStart(2, "0")
+    const total = Math.floor(diff / 1000)
+    const d = Math.floor(total / 86400)
+    const h = Math.floor((total % 86400) / 3600)
+    const m = Math.floor((total % 3600) / 60)
+    const s = total % 60
+    const clock = d > 0
+      ? `${d}d ${pad(h)}h ${pad(m)}m ${pad(s)}s`
+      : `${pad(h)}h ${pad(m)}m ${pad(s)}s`
+    this.el.textContent = `⏱ faltam ${clock}`
+  },
+}
+
 // Compartilhamento: usa a Web Share API nativa; se não houver, copia o link
 Hooks.Share = {
   mounted() {

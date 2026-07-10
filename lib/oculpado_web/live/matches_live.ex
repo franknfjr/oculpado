@@ -89,6 +89,15 @@ defmodule OculpadoWeb.MatchesLive do
                   </div>
                   <div class="mt-3 text-sm text-white/60 flex items-center gap-2">
                     <span class="pill">quem vence →</span>
+                    <span
+                      :if={m.kickoff != ""}
+                      id={"cd-#{m.id}"}
+                      class="pill countdown"
+                      phx-hook="Countdown"
+                      phx-update="ignore"
+                      data-kickoff={m.kickoff}
+                    >
+                    </span>
                   </div>
                 </div>
               </.link>
