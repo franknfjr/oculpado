@@ -12,6 +12,10 @@
     "loser_coach": {
       "id": 69075,
       "name": "Didier Deschamps"
+    },
+    "loser_referee": {
+      "id": 787201,
+      "name": "Iván Barton"
     }
   },
   "loser_team": {

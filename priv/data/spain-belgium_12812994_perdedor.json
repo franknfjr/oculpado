@@ -12,6 +12,10 @@
     "loser_coach": {
       "id": 53059,
       "name": "Rudi Garcia"
+    },
+    "loser_referee": {
+      "id": 65702,
+      "name": "Michael Oliver"
     }
   },
   "loser_team": {

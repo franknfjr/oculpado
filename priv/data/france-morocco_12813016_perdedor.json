@@ -12,6 +12,10 @@
     "loser_coach": {
       "id": 807706,
       "name": "Mohamed Ouahbi"
+    },
+    "loser_referee": {
+      "id": 789071,
+      "name": "Facundo Raul Tello Figueroa"
     }
   },
   "loser_team": {

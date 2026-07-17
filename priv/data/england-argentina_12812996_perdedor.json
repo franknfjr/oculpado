@@ -12,6 +12,10 @@
     "loser_coach": {
       "id": 785186,
       "name": "Thomas Tuchel"
+    },
+    "loser_referee": {
+      "id": 316136,
+      "name": "Ismail Elfath"
     }
   },
   "loser_team": {

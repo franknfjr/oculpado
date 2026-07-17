@@ -12,6 +12,10 @@
     "loser_coach": {
       "id": 53102,
       "name": "Ståle Solbakken"
+    },
+    "loser_referee": {
+      "id": 52599,
+      "name": "Clement Turpin"
     }
   },
   "loser_team": {
