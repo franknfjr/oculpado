@@ -121,7 +121,7 @@ defmodule Oculpado.Data do
       loser: loser,
       home_logo: team_logo(home_id),
       away_logo: team_logo(away_id),
-      loser_logo: team_logo(loser_id),
+      loser_logo: match["loser_logo"] || team_logo(loser_id),
       kickoff: match["startTimestamp"] || "",
       candidates:
         players

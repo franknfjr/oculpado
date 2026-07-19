@@ -8,6 +8,7 @@
     "score": "1-0",
     "loser": "Argentina",
     "featured": true,
+    "loser_logo": "/images/special/argentina-chora.jpg",
     "startTimestamp": "2026-07-19T19:00:00+00:00",
     "source": "sofascore.com/api/v1/event/12813005/lineups",
     "loser_coach": {
