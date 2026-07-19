@@ -40,3 +40,4 @@ npm-debug.log
 *.db
 *.db-shm
 *.db-wal
+.DS_Store
