@@ -178,7 +178,10 @@ defmodule OculpadoWeb.CulpadoLive do
             :if={@match.loser_logo}
             src={@match.loser_logo}
             alt={@match.loser}
-            class="w-20 h-20 mx-auto mb-2 object-contain drop-shadow"
+            class={[
+              "mx-auto object-contain drop-shadow",
+              (@match.featured && "w-72 max-w-full h-auto mb-3 rounded-xl") || "w-20 h-20 mb-2"
+            ]}
           />
 
           <h1 class="text-4xl sm:text-6xl font-black tracking-tight">
@@ -217,12 +220,18 @@ defmodule OculpadoWeb.CulpadoLive do
                 src={p.photo}
                 alt={p.name}
                 loading="lazy"
-                class="w-12 h-12 rounded-full object-cover bg-white/10 shrink-0"
+                class={[
+                  "rounded-full object-cover bg-white/10 shrink-0",
+                  (@match.featured && "w-16 h-16 sm:w-20 sm:h-20") || "w-12 h-12"
+                ]}
               />
 
               <div class="min-w-0 flex-1">
                 <div class="flex items-center gap-2">
-                  <span class="font-bold truncate">{p.name}</span>
+                  <span class={["font-bold truncate", @match.featured && "text-lg sm:text-xl"]}>
+                    {p.name}
+                  </span>
+                  <span :if={@match.featured} class="shrink-0 text-lg">😭</span>
                   <span :if={p.captain} class="pill">C</span>
                   <span :if={p.coach} class="pill" style="color: var(--br-yellow)">TÉCNICO</span>
                   <span :if={p.referee} class="pill" style="color: var(--br-yellow)">ÁRBITRO</span>

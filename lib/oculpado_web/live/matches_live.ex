@@ -62,7 +62,7 @@ defmodule OculpadoWeb.MatchesLive do
                       :if={m.loser_logo}
                       src={m.loser_logo}
                       alt={m.loser}
-                      class="w-14 h-14 object-contain shrink-0 drop-shadow"
+                      class="w-24 h-auto object-contain shrink-0 drop-shadow rounded-lg"
                     />
                     <div class="min-w-0">
                       <div class="text-2xl sm:text-3xl font-black leading-tight">
