@@ -63,6 +63,7 @@ defmodule OculpadoWeb.CulpadoLive do
       |> assign(:selected, selected)
       |> assign_tally(Votes.tally(match.id))
       |> push_event("sync_selected", %{key: store_key(match), ids: MapSet.to_list(selected)})
+      |> maybe_confetti(match, delta)
 
     {:noreply, socket}
   end
@@ -87,6 +88,10 @@ defmodule OculpadoWeb.CulpadoLive do
   end
 
   # ---- helpers ----
+
+  # Confete a cada novo dedo na cara (só nos jogos em destaque, e só ao apontar).
+  defp maybe_confetti(socket, %{featured: true}, +1), do: push_event(socket, "confetti", %{})
+  defp maybe_confetti(socket, _match, _delta), do: socket
 
   defp store_key(match), do: "oculpado:selected:#{match.slug}"
 
@@ -135,6 +140,7 @@ defmodule OculpadoWeb.CulpadoLive do
       phx-hook="VoterSync"
       data-store-key={store_key(@match)}
     >
+      <div :if={@match.featured} id="confetti" phx-hook="Confetti"></div>
       <div class="mx-auto max-w-2xl px-4 py-8 sm:py-12">
         <.link
           navigate={~p"/"}
@@ -161,6 +167,11 @@ defmodule OculpadoWeb.CulpadoLive do
             <span :if={@match.decided_on_penalties} class="text-white/60">
               · pên. {@match.penalties}
             </span>
+          </div>
+
+          <div :if={@match.featured} class="zoeira-banner mt-4 mb-1">
+            🏆 A FINAL — e deu zebra! 🇧🇷
+            <span class="zoeira-chant">Decime qué se siente</span>
           </div>
 
           <img

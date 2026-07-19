@@ -130,6 +130,67 @@ Hooks.Countdown = {
   },
 }
 
+// Confete verde-amarelo pra celebrar a zebra na final (jogos em destaque).
+// Dispara no carregamento e a cada voto novo (evento "confetti" do servidor).
+Hooks.Confetti = {
+  mounted() {
+    this.canvas = document.createElement("canvas")
+    this.canvas.style.cssText =
+      "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60"
+    document.body.appendChild(this.canvas)
+    this.ctx = this.canvas.getContext("2d")
+    this.parts = []
+    this.resize = () => {
+      this.canvas.width = window.innerWidth
+      this.canvas.height = window.innerHeight
+    }
+    this.resize()
+    window.addEventListener("resize", this.resize)
+    this.loop()
+    this.burst(160)
+    this.handleEvent("confetti", () => this.burst(70))
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resize)
+    cancelAnimationFrame(this.raf)
+    this.canvas && this.canvas.remove()
+  },
+  burst(n) {
+    const colors = ["#009c3b", "#ffdf00", "#002776", "#ffffff"]
+    const w = this.canvas.width
+    for (let i = 0; i < n; i++) {
+      this.parts.push({
+        x: Math.random() * w,
+        y: -20 - Math.random() * this.canvas.height * 0.3,
+        vx: (Math.random() - 0.5) * 3,
+        vy: 2 + Math.random() * 4,
+        rot: Math.random() * Math.PI,
+        vr: (Math.random() - 0.5) * 0.3,
+        sz: 5 + Math.random() * 7,
+        color: colors[(Math.random() * colors.length) | 0],
+      })
+    }
+  },
+  loop() {
+    const {ctx, canvas} = this
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    this.parts = this.parts.filter(p => p.y < canvas.height + 30)
+    for (const p of this.parts) {
+      p.x += p.vx
+      p.y += p.vy
+      p.vy += 0.05
+      p.rot += p.vr
+      ctx.save()
+      ctx.translate(p.x, p.y)
+      ctx.rotate(p.rot)
+      ctx.fillStyle = p.color
+      ctx.fillRect(-p.sz / 2, -p.sz / 2, p.sz, p.sz * 0.6)
+      ctx.restore()
+    }
+    this.raf = requestAnimationFrame(() => this.loop())
+  },
+}
+
 // Compartilhamento: usa a Web Share API nativa; se não houver, copia o link
 Hooks.Share = {
   mounted() {

@@ -267,3 +267,76 @@
   color: var(--sc);
   flex-shrink: 0;
 }
+
+/* ---------------- Zoeira: a final em destaque ---------------- */
+/* Card-hero dourado no topo da home (jogo em destaque). */
+.featured-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 20px;
+  border: 1.5px solid rgba(255, 223, 0, 0.55);
+  background:
+    radial-gradient(600px 200px at 12% -20%, rgba(255, 223, 0, 0.18), transparent 60%),
+    linear-gradient(135deg, rgba(0, 156, 59, 0.28), rgba(0, 39, 118, 0.22));
+  box-shadow: 0 0 0 1.5px rgba(255, 223, 0, 0.25), 0 20px 50px -20px rgba(255, 223, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.25s ease;
+}
+.featured-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1.5px rgba(255, 223, 0, 0.45), 0 26px 60px -20px rgba(255, 223, 0, 0.5);
+}
+/* Brilho que atravessa o card devagar */
+.featured-shine {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 223, 0, 0.14) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: shine 3.4s ease-in-out infinite;
+}
+@keyframes shine {
+  0%, 100% { transform: translateX(-100%); }
+  55%, 100% { transform: translateX(100%); }
+}
+.featured-badge {
+  color: #04120a;
+  background: var(--br-yellow);
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px -4px rgba(255, 223, 0, 0.7);
+}
+.featured-cta {
+  color: var(--br-yellow);
+  background: color-mix(in srgb, var(--br-yellow) 14%, transparent);
+  border-color: rgba(255, 223, 0, 0.4);
+}
+
+/* Faixa de deboche na página de votação */
+.zoeira-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  color: #04120a;
+  background: linear-gradient(90deg, var(--br-green), var(--br-yellow));
+  box-shadow: 0 10px 30px -12px rgba(255, 223, 0, 0.6);
+}
+.zoeira-chant {
+  font-style: italic;
+  font-weight: 700;
+  color: #071a12;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 1px 10px;
+  border-radius: 999px;
+  animation: chant 1.4s ease-in-out infinite;
+}
+@keyframes chant {
+  0%, 100% { transform: rotate(-2deg) scale(1); }
+  50% { transform: rotate(2deg) scale(1.05); }
+}
