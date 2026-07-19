@@ -222,7 +222,7 @@ defmodule OculpadoWeb.CulpadoLive do
                 loading="lazy"
                 class={[
                   "rounded-full object-cover bg-white/10 shrink-0",
-                  (@match.featured && "w-16 h-16 sm:w-20 sm:h-20") || "w-12 h-12"
+                  (@match.featured && "w-24 h-24 sm:w-28 sm:h-28") || "w-12 h-12"
                 ]}
               />
 
