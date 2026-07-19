@@ -222,13 +222,17 @@ defmodule OculpadoWeb.CulpadoLive do
                 loading="lazy"
                 class={[
                   "rounded-full object-cover bg-white/10 shrink-0",
-                  (@match.featured && "w-24 h-24 sm:w-28 sm:h-28") || "w-12 h-12"
+                  (@match.featured && "w-20 h-20 sm:w-28 sm:h-28") || "w-12 h-12"
                 ]}
               />
 
               <div class="min-w-0 flex-1">
-                <div class="flex items-center gap-2">
-                  <span class={["font-bold truncate", @match.featured && "text-lg sm:text-xl"]}>
+                <div class={["flex gap-2", (@match.featured && "items-start flex-wrap") || "items-center"]}>
+                  <span class={[
+                    "font-bold",
+                    (@match.featured && "text-base sm:text-xl leading-tight break-words min-w-0") ||
+                      "truncate"
+                  ]}>
                     {p.name}
                   </span>
                   <span :if={@match.featured} class="shrink-0 text-lg">😭</span>
