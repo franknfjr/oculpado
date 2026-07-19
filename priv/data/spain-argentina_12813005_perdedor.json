@@ -20,7 +20,30 @@
       "id": 68557,
       "name": "Slavko Vinčić",
       "photo_override": "/images/special/argentina/68557.png"
-    }
+    },
+    "extra_culprits": [
+      {
+        "id": 9900001,
+        "name": "VAR",
+        "position": "Revisão de vídeo",
+        "badge": "VAR",
+        "photo": "/images/special/argentina/var.png"
+      },
+      {
+        "id": 9900002,
+        "name": "A bola",
+        "position": "Cúmplice",
+        "badge": "OBJETO",
+        "photo": "/images/special/argentina/bola.png"
+      },
+      {
+        "id": 9900003,
+        "name": "O gramado",
+        "position": "Estava molhado",
+        "badge": "CAMPO",
+        "photo": "/images/special/argentina/gramado.png"
+      }
+    ]
   },
   "loser_team": {
     "id": 4819,

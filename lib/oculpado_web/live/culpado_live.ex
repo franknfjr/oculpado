@@ -15,9 +15,10 @@ defmodule OculpadoWeb.CulpadoLive do
         art = article(match.loser)
         page_url = url(~p"/match/#{match.slug}")
         placar = scoreline(match)
+        culpa = if match.featured, do: "pelo VICE", else: "pela eliminação"
 
         share_text =
-          "Quem foi o culpado pela eliminação #{art} #{match.loser}? " <>
+          "Quem foi o culpado #{culpa} #{art} #{match.loser}? " <>
             "#{match.home} #{placar} #{match.away}. Vote você também:"
 
         socket =
@@ -34,7 +35,7 @@ defmodule OculpadoWeb.CulpadoLive do
           )
           |> assign(
             :og_description,
-            "Vote em quem foi o culpado pela eliminação #{art} #{match.loser}. Resultado ao vivo."
+            "Vote em quem foi o culpado #{culpa} #{art} #{match.loser}. Resultado ao vivo."
           )
           |> assign(:og_image, absolute_image(match.loser_logo))
           |> assign_tally(Votes.tally(match.id))
@@ -187,7 +188,14 @@ defmodule OculpadoWeb.CulpadoLive do
           <h1 class="text-4xl sm:text-6xl font-black tracking-tight">
             O <span style="color: var(--br-yellow)">CULPADO</span>
           </h1>
-          <p class="mt-3 text-white/70">
+          <p :if={@match.featured} class="mt-3 text-white/70">
+            Quem foi o culpado pelo <strong style="color: var(--br-yellow)">VICE</strong> {article(
+              @match.loser
+            )} <strong>{@match.loser}</strong>?
+            <br class="hidden sm:block" /> Vote em <strong>quantos quiser</strong> — jogador, técnico,
+            juiz, o VAR, a bola, o gramado…
+          </p>
+          <p :if={!@match.featured} class="mt-3 text-white/70">
             Quem foi o culpado pela eliminação {article(@match.loser)} <strong>{@match.loser}</strong>?
             <br class="hidden sm:block" /> Toque em <strong>quantos jogadores</strong>
             quiser. A lista atualiza em tempo real.
@@ -239,6 +247,7 @@ defmodule OculpadoWeb.CulpadoLive do
                   <span :if={p.captain} class="pill">C</span>
                   <span :if={p.coach} class="pill" style="color: var(--br-yellow)">TÉCNICO</span>
                   <span :if={p.referee} class="pill" style="color: var(--br-yellow)">ÁRBITRO</span>
+                  <span :if={p[:badge]} class="pill" style="color: var(--br-yellow)">{p[:badge]}</span>
                   <span class="vote-check text-lg" style="color: var(--br-yellow)">✓</span>
                 </div>
                 <div class="flex items-center gap-2 text-xs text-white/60 mt-0.5">

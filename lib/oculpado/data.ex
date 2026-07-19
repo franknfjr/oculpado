@@ -129,6 +129,7 @@ defmodule Oculpado.Data do
         |> sort_candidates()
         |> maybe_add_coach(match["loser_coach"])
         |> maybe_add_referee(match["loser_referee"])
+        |> maybe_add_extras(match["extra_culprits"])
     }
   end
 
@@ -215,6 +216,34 @@ defmodule Oculpado.Data do
   end
 
   defp maybe_add_referee(candidates, _), do: candidates
+
+  # Culpados de zoeira (VAR, a bola, o gramado…) — entram no fim da lista.
+  defp maybe_add_extras(candidates, extras) when is_list(extras) do
+    extra =
+      Enum.map(extras, fn e ->
+        %{
+          id: e["id"],
+          name: e["name"],
+          short_name: e["name"],
+          number: nil,
+          position: e["position"],
+          position_code: nil,
+          starter: false,
+          minutes: 0,
+          captain: false,
+          rating: nil,
+          goals: nil,
+          coach: false,
+          referee: false,
+          badge: e["badge"],
+          photo: e["photo"]
+        }
+      end)
+
+    candidates ++ extra
+  end
+
+  defp maybe_add_extras(candidates, _), do: candidates
 
   # Ids dos times (home, away). No formato "perdedor" só temos o id do time que perdeu.
   defp team_ids(json, loser, home) do
