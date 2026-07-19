@@ -13,11 +13,13 @@
     "source": "sofascore.com/api/v1/event/12813005/lineups",
     "loser_coach": {
       "id": 790728,
-      "name": "Lionel Scaloni"
+      "name": "Lionel Scaloni",
+      "photo_override": "/images/special/argentina/790728.png"
     },
     "loser_referee": {
       "id": 68557,
-      "name": "Slavko Vinčić"
+      "name": "Slavko Vinčić",
+      "photo_override": "/images/special/argentina/68557.png"
     }
   },
   "loser_team": {
@@ -43,7 +45,8 @@
         "dateOfBirth": "1992-09-02",
         "height": 195,
         "photo": "https://api.sofascore.com/api/v1/player/158263/image",
-        "slug": "emiliano-martinez"
+        "slug": "emiliano-martinez",
+        "photo_override": "/images/special/argentina/158263.png"
       },
       {
         "id": 822933,
@@ -62,7 +65,8 @@
         "dateOfBirth": "1997-01-01",
         "height": 175,
         "photo": "https://api.sofascore.com/api/v1/player/822933/image",
-        "slug": "gonzalo-montiel"
+        "slug": "gonzalo-montiel",
+        "photo_override": "/images/special/argentina/822933.png"
       },
       {
         "id": 829932,
@@ -81,7 +85,8 @@
         "dateOfBirth": "1998-04-27",
         "height": 185,
         "photo": "https://api.sofascore.com/api/v1/player/829932/image",
-        "slug": "cristian-romero"
+        "slug": "cristian-romero",
+        "photo_override": "/images/special/argentina/829932.png"
       },
       {
         "id": 859999,
@@ -100,7 +105,8 @@
         "dateOfBirth": "1998-01-18",
         "height": 175,
         "photo": "https://api.sofascore.com/api/v1/player/859999/image",
-        "slug": "lisandro-martinez"
+        "slug": "lisandro-martinez",
+        "photo_override": "/images/special/argentina/859999.png"
       },
       {
         "id": 158243,
@@ -119,7 +125,8 @@
         "dateOfBirth": "1992-08-31",
         "height": 172,
         "photo": "https://api.sofascore.com/api/v1/player/158243/image",
-        "slug": "nicolas-tagliafico"
+        "slug": "nicolas-tagliafico",
+        "photo_override": "/images/special/argentina/158243.png"
       },
       {
         "id": 249399,
@@ -138,7 +145,8 @@
         "dateOfBirth": "1994-05-24",
         "height": 180,
         "photo": "https://api.sofascore.com/api/v1/player/249399/image",
-        "slug": "rodrigo-de-paul"
+        "slug": "rodrigo-de-paul",
+        "photo_override": "/images/special/argentina/249399.png"
       },
       {
         "id": 974505,
@@ -157,7 +165,8 @@
         "dateOfBirth": "2001-01-17",
         "height": 177,
         "photo": "https://api.sofascore.com/api/v1/player/974505/image",
-        "slug": "enzo-fernandez"
+        "slug": "enzo-fernandez",
+        "photo_override": "/images/special/argentina/974505.png"
       },
       {
         "id": 895324,
@@ -176,7 +185,8 @@
         "dateOfBirth": "1998-12-24",
         "height": 176,
         "photo": "https://api.sofascore.com/api/v1/player/895324/image",
-        "slug": "alexis-mac-allister"
+        "slug": "alexis-mac-allister",
+        "photo_override": "/images/special/argentina/895324.png"
       },
       {
         "id": 901325,
@@ -195,7 +205,8 @@
         "dateOfBirth": "1998-04-06",
         "height": 180,
         "photo": "https://api.sofascore.com/api/v1/player/901325/image",
-        "slug": "nicolas-gonzalez"
+        "slug": "nicolas-gonzalez",
+        "photo_override": "/images/special/argentina/901325.png"
       },
       {
         "id": 12994,
@@ -214,7 +225,8 @@
         "dateOfBirth": "1987-06-24",
         "height": 169,
         "photo": "https://api.sofascore.com/api/v1/player/12994/image",
-        "slug": "lionel-messi"
+        "slug": "lionel-messi",
+        "photo_override": "/images/special/argentina/12994.png"
       },
       {
         "id": 944656,
@@ -233,7 +245,8 @@
         "dateOfBirth": "2000-01-31",
         "height": 170,
         "photo": "https://api.sofascore.com/api/v1/player/944656/image",
-        "slug": "julian-alvarez"
+        "slug": "julian-alvarez",
+        "photo_override": "/images/special/argentina/944656.png"
       },
       {
         "id": 74915,
@@ -252,7 +265,8 @@
         "dateOfBirth": "1988-02-12",
         "height": 183,
         "photo": "https://api.sofascore.com/api/v1/player/74915/image",
-        "slug": "nicolas-otamendi"
+        "slug": "nicolas-otamendi",
+        "photo_override": "/images/special/argentina/74915.png"
       },
       {
         "id": 255389,
@@ -271,7 +285,8 @@
         "dateOfBirth": "1994-06-29",
         "height": 180,
         "photo": "https://api.sofascore.com/api/v1/player/255389/image",
-        "slug": "leandro-paredes"
+        "slug": "leandro-paredes",
+        "photo_override": "/images/special/argentina/255389.png"
       },
       {
         "id": 831799,
@@ -290,7 +305,8 @@
         "dateOfBirth": "1998-04-06",
         "height": 175,
         "photo": "https://api.sofascore.com/api/v1/player/831799/image",
-        "slug": "nahuel-molina"
+        "slug": "nahuel-molina",
+        "photo_override": "/images/special/argentina/831799.png"
       },
       {
         "id": 860307,
@@ -309,7 +325,8 @@
         "dateOfBirth": "1999-05-28",
         "height": 184,
         "photo": "https://api.sofascore.com/api/v1/player/860307/image",
-        "slug": "facundo-medina"
+        "slug": "facundo-medina",
+        "photo_override": "/images/special/argentina/860307.png"
       },
       {
         "id": 1099352,
@@ -328,7 +345,8 @@
         "dateOfBirth": "2002-12-18",
         "height": 173,
         "photo": "https://api.sofascore.com/api/v1/player/1099352/image",
-        "slug": "giuliano-simeone"
+        "slug": "giuliano-simeone",
+        "photo_override": "/images/special/argentina/1099352.png"
       },
       {
         "id": 830659,
@@ -347,7 +365,8 @@
         "dateOfBirth": "1997-05-10",
         "height": 184,
         "photo": "https://api.sofascore.com/api/v1/player/830659/image",
-        "slug": "marcos-senesi"
+        "slug": "marcos-senesi",
+        "photo_override": "/images/special/argentina/830659.png"
       }
     ]
   }

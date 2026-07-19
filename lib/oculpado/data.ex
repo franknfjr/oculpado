@@ -165,7 +165,7 @@ defmodule Oculpado.Data do
   end
 
   # O técnico também pode ser culpado — entra como candidato no fim da lista.
-  defp maybe_add_coach(candidates, %{"id" => id, "name" => name}) when is_integer(id) do
+  defp maybe_add_coach(candidates, %{"id" => id, "name" => name} = c) when is_integer(id) do
     coach = %{
       id: id,
       name: name,
@@ -181,7 +181,7 @@ defmodule Oculpado.Data do
       coach: true,
       referee: false,
       photo:
-        Oculpado.Assets.local_path(:manager, id) ||
+        c["photo_override"] || Oculpado.Assets.local_path(:manager, id) ||
           "https://api.sofascore.com/api/v1/manager/#{id}/image"
     }
 
@@ -191,7 +191,7 @@ defmodule Oculpado.Data do
   defp maybe_add_coach(candidates, _), do: candidates
 
   # O árbitro também pode ser o culpado — entra como candidato no fim da lista.
-  defp maybe_add_referee(candidates, %{"id" => id, "name" => name}) when is_integer(id) do
+  defp maybe_add_referee(candidates, %{"id" => id, "name" => name} = r) when is_integer(id) do
     referee = %{
       id: id,
       name: name,
@@ -207,7 +207,7 @@ defmodule Oculpado.Data do
       coach: false,
       referee: true,
       photo:
-        Oculpado.Assets.local_path(:referee, id) ||
+        r["photo_override"] || Oculpado.Assets.local_path(:referee, id) ||
           "https://api.sofascore.com/api/v1/referee/#{id}/image"
     }
 
@@ -298,6 +298,6 @@ defmodule Oculpado.Data do
 
   # Prioriza a foto local baixada; cai na URL do SofaScore quando ainda não existe.
   defp player_photo(p) do
-    Oculpado.Assets.local_path(:player, p["id"]) || p["photo"]
+    p["photo_override"] || Oculpado.Assets.local_path(:player, p["id"]) || p["photo"]
   end
 end
